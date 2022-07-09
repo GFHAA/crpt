@@ -37,7 +37,7 @@ function tarifBtnInit() {
                 document.querySelector("#typeShoes").innerHTML = Object.keys(prices.types)[i]
                 let value = Object.keys(prices.types)[i].toLowerCase()
                 currentSet.typeShoe = prices.types[value]
-                console.log(currentSet.typeShoe)
+                currentSet.getAmt()
             }
         })
     })
@@ -52,8 +52,7 @@ function tarifBtnInit() {
                 document.querySelector("#typeShoes").innerHTML = Object.keys(prices.types)[i]
                 let value = Object.keys(prices.types)[i].toLowerCase()
                 currentSet.typeShoe = prices.types[value]
-                console.log(currentSet.typeShoe)
-
+                currentSet.getAmt()
             }
         })
     })
