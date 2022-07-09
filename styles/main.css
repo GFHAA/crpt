@@ -59,7 +59,6 @@ input::-webkit-inner-spin-button {
     }
 
 }
-
 @media (max-width: 360px) {
     body{
         font-size: 90%;
@@ -68,9 +67,22 @@ input::-webkit-inner-spin-button {
         padding-left: 0;
         padding-right: 0;
     }
+    .container{
+        padding: 0;
+    }
     .table-stats input {
         width: 2rem;
     }
+}
+.imgHolderCol{
+    text-align: center;
+    position: relative;
+}
+.imgHolderCol:before {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    content: "";
 }
 input{
     text-align: center;
@@ -170,9 +182,8 @@ input{
 }
 
 .imgHolder {
-    margin-top: 50%;
-    transform: translate(0, -50%);
-    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .footer {
