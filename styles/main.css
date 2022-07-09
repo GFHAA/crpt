@@ -56,6 +56,9 @@ input::-webkit-inner-spin-button {
         width: 60% !important;
     }
 }
+.align-self-center>*{
+    text-align: center;
+}
 .col{
     padding: 0;
 }
