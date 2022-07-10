@@ -25,7 +25,8 @@ function tarifBtnInit() {
         el.addEventListener('click', function (e) {
 
             if (e.target.previousElementSibling.id != "typeShoes") {
-                if (e.target.previousElementSibling.id == "classShoe") { //обработчик редкости ботинка
+                switch (e.target.previousElementSibling.id){
+                case "classShoe":
                     const classShoe = document.querySelector("#classShoe")
                     j++
                     j = j == 5 ? 0 : j % 5
