@@ -1,11 +1,3 @@
-Object.prototype.getFirstProperty = function () {
-    for (let i in this) {
-        return this[i];
-        break;
-    }
-}
-
-
 const performance = document.querySelector("#performance")
 const performanceTotal = document.querySelector("#performanceTotal")
 
@@ -16,6 +8,7 @@ const inputDurability = document.querySelector("#durability")
 const tarifPluses = Array.from(document.querySelectorAll(".SelectBox .next-icon"))
 const tarifMinuses = Array.from(document.querySelectorAll(".SelectBox .prev-icon"))
 
+
 const plusesStats = Array.from(document.querySelectorAll(".inner-stats .next-icon"))
 const minusStats = Array.from(document.querySelectorAll(".inner-stats .prev-icon"))
 
@@ -24,13 +17,30 @@ const points = document.querySelector("#points")
 const income = document.querySelector("#income")
 
 //функционал кнопок плюс-минус сверху
+
 function tarifBtnInit() {
     let i = 0
+    let j = 0
     tarifPluses.forEach(el => {
         el.addEventListener('click', function (e) {
 
             if (e.target.previousElementSibling.id != "typeShoes") {
-                console.log(e.target.previousElementSibling.id)
+                if (e.target.previousElementSibling.id == "classShoe") { //обработчик редкости ботинка
+                    const classShoe = document.querySelector("#classShoe")
+                    j++
+                    j = j == 5 ? 0 : j % 5
+                    currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
+                    const bgColor = prices.rares[currentSet.rareThis].color
+                    currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
+                    currentSet.getPoint()
+                    points.innerHTML = currentSet.points
+                    inputBase.forEach(el => {
+                        el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
+                    })
+                    classShoe.innerHTML = currentSet.rareThis
+                    classShoe.style.backgroundColor = bgColor
+                    currentSet.getAmt()
+                }
             } else {
                 i++
                 i = i == 4 ? 0 : i % 4
@@ -42,10 +52,24 @@ function tarifBtnInit() {
         })
     })
     tarifMinuses.forEach(el => {
-        // i = 4
         el.addEventListener('click', function (e) {
             if (e.target.nextElementSibling.id != "typeShoes") {
-                // console.log(e.target.nextElementSibling.id)
+                if (e.target.nextElementSibling.id == "classShoe") { //обработчик редкости ботинка
+                    const classShoe = document.querySelector("#classShoe")
+                    j--
+                    j = j < 0 ? 4 : j % 5
+                    currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
+                    const bgColor = prices.rares[currentSet.rareThis].color
+                    currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
+                    currentSet.getPoint()
+                    points.innerHTML = currentSet.points
+                    inputBase.forEach(el => {
+                        el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
+                    })
+                    classShoe.innerHTML = currentSet.rareThis
+                    classShoe.style.backgroundColor = bgColor
+                    currentSet.getAmt()
+                }
             } else {
                 i--
                 i = i < 0 ? 3 : i % 4
@@ -63,10 +87,10 @@ tarifBtnInit()
 plusesStats.forEach(el => {
     el.addEventListener('click', function (e) {
         if (currentSet.points > 0) {
-            currentSet.points--
-            points.innerHTML = currentSet.points
             let divInput = e.target.previousElementSibling
             let prev = divInput.previousElementSibling
+            currentSet.points--
+            points.innerHTML = currentSet.points
             divInput.innerHTML = Number(divInput.innerHTML) + 1
             currentSet.getAmt()
             if (Number(divInput.innerHTML) > 0) {
@@ -103,19 +127,6 @@ minusStats.forEach(el => {
     })
 })
 
-//установление редкости ботинка
-typeShoe.forEach(el => {
-    el.addEventListener('click', function (e) {
-        currentSet.rareThis = e.target.id;
-        currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
-        currentSet.getPoint()
-        points.innerHTML = currentSet.points
-        inputBase.forEach(el => {
-            el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
-        })
-        currentSet.getAmt()
-    })
-});
 inputBase.forEach(el => {
     el.addEventListener("input", function (e) {
         let currentTotal = e.target.parentNode.nextElementSibling.childNodes[1].childNodes[3]
@@ -137,32 +148,37 @@ inputDurability.addEventListener('input', function (e) {
 
 const prices = {
     rares: {
-        'common': {
+        common: {
             limit: [5, 35],
             baseParam: [1, 10],
-            upgrade: [0.1, 3] //Сотые доли и очки 
+            upgrade: [0.1, 3], //Сотые доли и очки 
+            color: "#babcbe",
         },
-        'uncommon': {
+        uncommon: {
             limit: [10, 40],
             baseParam: [12, 22],
-            upgrade: [0.1, 5]
+            upgrade: [0.1, 5],
+            color: "#aed144",
         },
-        'rare': {
+        rare: {
             limit: [15, 75],
             baseParam: [24, 25],
-            upgrade: [0.1, 10]
+            upgrade: [0.1, 10],
+            color: "#47aced",
 
         },
-        'epic': {
+        epic: {
             limit: [20, 110],
             baseParam: [38, 60],
-            upgrade: [0.12, 20]
+            upgrade: [0.12, 20],
+            color: " #a398eb",
 
         },
-        'legendary': {
+        legendary: {
             limit: [30, 150],
             baseParam: [65, 115],
-            upgrade: [0.15, 25]
+            upgrade: [0.15, 25],
+            color: "#f5a836",
 
         },
 
@@ -182,7 +198,7 @@ let currentSet = {
     upgrade: 0,
     basePerformance: 0,
     typeShoe: prices.types.ranger,
-    points: 0,
+    points: 3,
     level: 1,
     energy: 1,
     getPoint: function () {

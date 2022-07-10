@@ -142,45 +142,13 @@ input{
 .SelectBox .stats {
     width: 9rem;
 }
+/* #classShoe {
+    transition: all .3s ease;
+} */
 
-.radio:hover {
-    background-color: rgba(0, 198, 132, 0.5);
+.common{
+    background: #babcbe;
 }
-
-.checker:checked+.grey {
-    color: #fff;
-    background-color: grey;
-}
-
-.checker:checked+.green {
-    color: #fff;
-    background-color: green;
-}
-
-.checker:checked+.blue {
-    color: #fff;
-    background-color: blue;
-}
-
-.checker:checked+.purple {
-    color: #fff;
-    background-color: purple;
-}
-
-.checker:checked+.orange {
-    color: #fff;
-    background-color: orange;
-}
-
-.tarrifh2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.SelectSpan {
-    width: 50%;
-}
-
 .imgHolder {
     display: inline-block;
     vertical-align: middle;
