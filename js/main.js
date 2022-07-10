@@ -44,6 +44,7 @@ function tarifBtnInit() {
                         classShoe.innerHTML = currentSet.rareThis
                         classShoe.style.backgroundColor = bgColor
                         currentSet.getAmt()
+                        currentSet.updateLimit()
                         break
                     case "lvlShoes":
                         const lvlShoes = document.querySelector("#lvlShoes")
@@ -63,6 +64,7 @@ function tarifBtnInit() {
                             e.target.classList.add("inactive")
                         }
                         currentSet.getAmt()
+                        currentSet.updateLimit()
                         break
                     case "energyPerDay":
                         const energy = document.querySelector("#energyPerDay")
@@ -111,6 +113,7 @@ function tarifBtnInit() {
                         classShoe.innerHTML = currentSet.rareThis
                         classShoe.style.backgroundColor = bgColor
                         currentSet.getAmt()
+                        currentSet.updateLimit()
                         break
                     case "lvlShoes":
                         const lvlShoes = document.querySelector("#lvlShoes")
@@ -131,6 +134,7 @@ function tarifBtnInit() {
                         next.classList.add("active")
                         next.classList.remove("inactive")
                         currentSet.getAmt()
+                        currentSet.updateLimit()
                         break
                     case "energyPerDay":
                         const energy = document.querySelector("#energyPerDay")
@@ -279,7 +283,7 @@ let currentSet = {
     basePerformance: 0,
     typeShoe: prices.types.ranger,
     points: 0,
-    level: 0,
+    level: 2,
     energy: 1,
     getPoint: function () {
         this.points = this.level * this.upgrade
@@ -287,8 +291,25 @@ let currentSet = {
     },
     getAmt: function () {
         // let amt = this.energy * (Number(this.basePerformance) + Number(performanceTotal.innerHTML)) * this.typeShoe
+        const amtPerDay = document.getElementById("amt-per-day")
         let amt = Number((this.energy * Number(performanceTotal.innerHTML) * this.typeShoe).toFixed(2))
         let destroy = this.energy * (1 ** (this.baseDurability / 1))
         income.innerHTML = amt + " ";
+        amtPerDay.innerHTML = amt
     },
+    getLimit: function () {
+        let arrLimit = prices.rares[this.rareThis].limit
+        if (this.level == 0) {
+            return arrLimit[0]
+        } else {
+            let perLevel = (arrLimit[1] - arrLimit[0]) / 30
+            let currentLimit = arrLimit[0] + perLevel * this.level
+            return currentLimit
+        }
+    },
+    updateLimit: function(){
+        const limitPerDaySpan = document.getElementById("limit-per-level")
+        limitPerDaySpan.innerHTML = this.getLimit()
+    }
 }
+console.log(currentSet.getLimit())
