@@ -59,34 +59,48 @@ input::-webkit-inner-spin-button {
     }
 
 }
+
 @media (max-width: 360px) {
-    body{
+    body {
         font-size: 90%;
     }
+
     .row>* {
         padding-left: 0;
         padding-right: 0;
     }
-    .container{
+
+    .container {
         padding: 0;
     }
+
     .table-stats input {
         width: 2rem;
     }
 }
-.imgHolderCol{
+
+.imgHolderCol {
     text-align: center;
     position: relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
 .imgHolderCol:before {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
     content: "";
 }
-input{
+
+input {
     text-align: center;
 }
+
 .col {
     padding: 0;
 }
@@ -142,13 +156,16 @@ input{
 .SelectBox .stats {
     width: 9rem;
 }
+
 #classShoe {
     transition: all .3s ease;
 }
 
-.common{
+
+.common {
     background: #babcbe;
 }
+
 .imgHolder {
     display: inline-block;
     vertical-align: middle;

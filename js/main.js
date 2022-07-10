@@ -25,22 +25,61 @@ function tarifBtnInit() {
         el.addEventListener('click', function (e) {
 
             if (e.target.previousElementSibling.id != "typeShoes") {
-                switch (e.target.previousElementSibling.id){
-                case "classShoe":
-                    const classShoe = document.querySelector("#classShoe")
-                    j++
-                    j = j == 5 ? 0 : j % 5
-                    currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
-                    const bgColor = prices.rares[currentSet.rareThis].color
-                    currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
-                    currentSet.getPoint()
-                    points.innerHTML = currentSet.points
-                    inputBase.forEach(el => {
-                        el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
-                    })
-                    classShoe.innerHTML = currentSet.rareThis
-                    classShoe.style.backgroundColor = bgColor
-                    currentSet.getAmt()
+                let prev
+                let next
+                switch (e.target.previousElementSibling.id) {
+                    case "classShoe":
+                        const classShoe = document.querySelector("#classShoe")
+                        j++
+                        j = j == 5 ? 0 : j % 5
+                        currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
+                        const bgColor = prices.rares[currentSet.rareThis].color
+                        currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
+                        currentSet.getPoint()
+                        points.innerHTML = currentSet.points
+                        inputBase.forEach(el => {
+                            el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`
+                            el.value = ""
+                        })
+                        classShoe.innerHTML = currentSet.rareThis
+                        classShoe.style.backgroundColor = bgColor
+                        currentSet.getAmt()
+                        break
+                    case "lvlShoes":
+                        const lvlShoes = document.querySelector("#lvlShoes")
+                        prev = lvlShoes.previousElementSibling
+                        if (Number(lvlShoes.innerHTML) <= 29) {
+                            lvlShoes.innerHTML = Number(lvlShoes.innerHTML) + 1
+                            currentSet.level = Number(lvlShoes.innerHTML)
+                            currentSet.getPoint()
+                            points.innerHTML = currentSet.points
+                            currentSet.getAmt()
+                        }
+                        if (Number(lvlShoes.innerHTML) > 0) {
+                            prev.classList.add('active')
+                        }
+                        if (Number(lvlShoes.innerHTML) == 30) {
+                            e.target.classList.remove("active")
+                            e.target.classList.add("inactive")
+                        }
+                        currentSet.getAmt()
+                        break
+                    case "energyPerDay":
+                        const energy = document.querySelector("#energyPerDay")
+                        prev = energy.previousElementSibling
+                        if (Number(energy.innerHTML) <= 19) {
+                            energy.innerHTML = Number(energy.innerHTML) + 1
+                            currentSet.energy = Number(energy.innerHTML)
+                        }
+                        if (Number(energy.innerHTML) > 0) {
+                            prev.classList.add('active')
+                        }
+                        if (Number(energy.innerHTML) == 20) {
+                            e.target.classList.remove("active")
+                            e.target.classList.add("inactive")
+                        }
+                        currentSet.getAmt()
+                        break
                 }
             } else {
                 i++
@@ -55,21 +94,61 @@ function tarifBtnInit() {
     tarifMinuses.forEach(el => {
         el.addEventListener('click', function (e) {
             if (e.target.nextElementSibling.id != "typeShoes") {
-                if (e.target.nextElementSibling.id == "classShoe") { //обработчик редкости ботинка
-                    const classShoe = document.querySelector("#classShoe")
-                    j--
-                    j = j < 0 ? 4 : j % 5
-                    currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
-                    const bgColor = prices.rares[currentSet.rareThis].color
-                    currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
-                    currentSet.getPoint()
-                    points.innerHTML = currentSet.points
-                    inputBase.forEach(el => {
-                        el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
-                    })
-                    classShoe.innerHTML = currentSet.rareThis
-                    classShoe.style.backgroundColor = bgColor
-                    currentSet.getAmt()
+                switch (e.target.nextElementSibling.id) {
+                    case "classShoe":
+                        const classShoe = document.querySelector("#classShoe")
+                        j--
+                        j = j < 0 ? 4 : j % 5
+                        currentSet.rareThis = Object.keys(prices.rares)[j].toLowerCase()
+                        const bgColor = prices.rares[currentSet.rareThis].color
+                        currentSet.upgrade = prices.rares[currentSet.rareThis]['upgrade'][1]
+                        currentSet.getPoint()
+                        points.innerHTML = currentSet.points
+                        inputBase.forEach(el => {
+                            el.placeholder = `${prices.rares[currentSet.rareThis]['baseParam'][0]}-${prices.rares[currentSet.rareThis]['baseParam'][1]}`;
+                            el.value = ""
+                        })
+                        classShoe.innerHTML = currentSet.rareThis
+                        classShoe.style.backgroundColor = bgColor
+                        currentSet.getAmt()
+                        break
+                    case "lvlShoes":
+                        const lvlShoes = document.querySelector("#lvlShoes")
+                        next = lvlShoes.nextElementSibling
+                        if (Number(lvlShoes.innerHTML) > 0) {
+                            lvlShoes.innerHTML = Number(lvlShoes.innerHTML) - 1
+                            currentSet.level = Number(lvlShoes.innerHTML)
+                            currentSet.getPoint()
+                            points.innerHTML = currentSet.points
+                            currentSet.getAmt()
+                        }
+                        if (Number(lvlShoes.innerHTML) > 0) {
+                            e.target.classList.add('active')
+                        } else {
+                            e.target.classList.remove('active')
+                            e.target.classList.add('inactive')
+                        }
+                        next.classList.add("active")
+                        next.classList.remove("inactive")
+                        currentSet.getAmt()
+                        break
+                    case "energyPerDay":
+                        const energy = document.querySelector("#energyPerDay")
+                        next = energy.nextElementSibling
+                        if (Number(energy.innerHTML) > 0) {
+                            energy.innerHTML = Number(energy.innerHTML) - 1
+                            currentSet.energy = Number(energy.innerHTML)
+                        }
+                        if (Number(energy.innerHTML) > 0) {
+                            e.target.classList.add('active')
+                        } else {
+                            e.target.classList.remove('active')
+                            e.target.classList.add('inactive')
+                        }
+                        next.classList.add("active")
+                        next.classList.remove("inactive")
+                        currentSet.getAmt()
+                        break
                 }
             } else {
                 i--
@@ -196,11 +275,11 @@ const prices = {
 let currentSet = {
     rareThis: 'common',
     baseDurability: 1,
-    upgrade: 0,
+    upgrade: 3,
     basePerformance: 0,
     typeShoe: prices.types.ranger,
-    points: 3,
-    level: 1,
+    points: 0,
+    level: 0,
     energy: 1,
     getPoint: function () {
         this.points = this.level * this.upgrade
