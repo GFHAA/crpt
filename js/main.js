@@ -283,14 +283,13 @@ let currentSet = {
     basePerformance: 0,
     typeShoe: prices.types.ranger,
     points: 0,
-    level: 2,
-    energy: 1,
+    level: 0,
+    energy: 0,
     getPoint: function () {
         this.points = this.level * this.upgrade
         return this.points
     },
     getAmt: function () {
-        // let amt = this.energy * (Number(this.basePerformance) + Number(performanceTotal.innerHTML)) * this.typeShoe
         const amtPerDay = document.getElementById("amt-per-day")
         let amt = Number((this.energy * Number(performanceTotal.innerHTML) * this.typeShoe).toFixed(2))
         let destroy = this.energy * (1 ** (this.baseDurability / 1))
@@ -312,4 +311,3 @@ let currentSet = {
         limitPerDaySpan.innerHTML = this.getLimit()
     }
 }
-console.log(currentSet.getLimit())
