@@ -142,9 +142,9 @@ input{
 .SelectBox .stats {
     width: 9rem;
 }
-/* #classShoe {
+#classShoe {
     transition: all .3s ease;
-} */
+}
 
 .common{
     background: #babcbe;
