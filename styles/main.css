@@ -7,7 +7,7 @@
 
 body {
     font-size: 130%;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0;
     padding: 0;
     position: relative;
@@ -249,4 +249,8 @@ input {
 
 .inputBase {
     padding-right: 0 !important;
+}
+.total-inc{
+    font-weight: 700;
+    font-size: 130%;
 }
