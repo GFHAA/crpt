@@ -13,6 +13,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+
 }
 
 a {
@@ -48,16 +49,24 @@ input::-webkit-inner-spin-button {
 .row {
     margin: 0;
     flex-wrap: wrap;
-    margin-top: 3% !important;
+    margin-top: 3%;
     justify-content: space-between;
     width: 100%;
 }
-
+.row>*:first-child{
+    padding-left: 0;
+}
+.row>{
+    padding-left: 0;
+}
 @media (min-width: 576px) {
     .col {
         width: 50%;
     }
 
+    .logo span {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -130,10 +139,25 @@ input {
 }
 
 .SelectBox {
+    padding: 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.SelectBox .row>* {
+    padding: 0;
+}
+.fw-400{
+    font-weight: 400;
+    
+}
+.logo {
+    padding: 0.5rem 0;
+    margin-top: 0 !important;
+    font-size: 700;
+}
+
 
 .radio:not(:first-child) {
     margin-left: -2px;
@@ -225,7 +249,9 @@ input {
     cursor: pointer;
     margin: 0.5rem 0;
 }
-
+.table-stats{
+    padding-left: 0;
+}
 .table-stats input {
     max-width: 4rem;
     max-height: 3rem;
@@ -250,7 +276,18 @@ input {
 .inputBase {
     padding-right: 0 !important;
 }
-.total-inc{
+
+.total-inc {
+    /* position: relative; */
+    margin-top: 0%;
     font-weight: 700;
     font-size: 130%;
+}
+.total-inc span{
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.amt-img{
+    padding-bottom: 10px;
+    width: 1.5rem;
 }
