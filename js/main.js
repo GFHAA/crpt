@@ -225,7 +225,6 @@ performance.addEventListener('input', function (e) {
 })//основная МОЩЬ ботинка
 
 inputDurability.addEventListener('input', function (e) {
-    console.log(1)
     currentSet.baseDurability = Number(e.target.value);
     currentSet.getAmt()
 })//прочность

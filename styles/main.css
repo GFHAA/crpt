@@ -6,6 +6,7 @@
 }
 
 body {
+    background: #1d1d26;
     font-size: 130%;
     font-weight: 500;
     margin: 0;
@@ -13,7 +14,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-
+    color: #fff;
 }
 
 a {
@@ -46,6 +47,19 @@ input::-webkit-inner-spin-button {
     padding: 0.5rem !important;
 }
 
+.logo-fixed {
+    -webkit-box-shadow: 0px 13px 8px 0px rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0px 13px 8px 0px rgb(0 0 0 / 10%);
+    box-shadow: 0px 13px 8px 0px rgb(0 0 0 / 10%);
+    padding: 5px;
+    background: #272938;
+    justify-content: center;
+    margin: auto;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+}
+
 .row {
     margin: 0;
     flex-wrap: wrap;
@@ -53,12 +67,19 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
     width: 100%;
 }
-.row>*:first-child{
+
+.padding {
+    padding-top: 70px;
+}
+
+.row>*:first-child {
     padding-left: 0;
 }
-.row>{
+
+.row> {
     padding-left: 0;
 }
+
 @media (min-width: 576px) {
     .col {
         width: 50%;
@@ -148,10 +169,12 @@ input {
 .SelectBox .row>* {
     padding: 0;
 }
-.fw-400{
+
+.fw-400 {
     font-weight: 400;
-    
+
 }
+
 .logo {
     padding: 0.5rem 0;
     margin-top: 0 !important;
@@ -220,10 +243,12 @@ input {
 }
 
 .inactive {
+    filter: invert(1);
     background-image: url(../assets/rigthArrowInactive.svg);
 }
 
 .active {
+    filter: invert(1);
     background-image: url(../assets/rigthArrow.svg);
 }
 
@@ -249,10 +274,13 @@ input {
     cursor: pointer;
     margin: 0.5rem 0;
 }
-.table-stats{
+
+.table-stats {
     padding-left: 0;
 }
+
 .table-stats input {
+    background: none;
     max-width: 4rem;
     max-height: 3rem;
     border-radius: 0;
@@ -278,16 +306,34 @@ input {
 }
 
 .total-inc {
-    /* position: relative; */
+
     margin-top: 0%;
     font-weight: 700;
     font-size: 130%;
 }
-.total-inc span{
+
+.total-inc span {
+    justify-content: space-between;
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: 700;
+    align-items: center;
+    gap: 16px;
     font-size: 1.25rem;
     font-weight: 700;
 }
-.amt-img{
-    padding-bottom: 10px;
+
+.amt-img {
     width: 1.5rem;
+}
+
+.container .row {
+    gap: 16px;
+}
+
+.container .row .col {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    border-radius: 1.5rem;
+    background: #272938;
 }
