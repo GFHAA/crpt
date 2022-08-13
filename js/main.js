@@ -8,6 +8,7 @@ const inputDurability = document.querySelector("#durability")
 const tarifPluses = Array.from(document.querySelectorAll(".SelectBox .next-icon"))
 const tarifMinuses = Array.from(document.querySelectorAll(".SelectBox .prev-icon"))
 
+const imgHolder = document.querySelector(".imgHolder")
 
 const plusesStats = Array.from(document.querySelectorAll(".inner-stats .next-icon"))
 const minusStats = Array.from(document.querySelectorAll(".inner-stats .prev-icon"))
@@ -43,6 +44,7 @@ function tarifBtnInit() {
                         })
                         classShoe.innerHTML = currentSet.rareThis
                         classShoe.style.backgroundColor = bgColor
+                        imgHolder.style.backgroundColor = bgColor
                         currentSet.getAmt()
                         currentSet.updateLimit()
                         break
@@ -112,6 +114,7 @@ function tarifBtnInit() {
                         })
                         classShoe.innerHTML = currentSet.rareThis
                         classShoe.style.backgroundColor = bgColor
+                        imgHolder.style.backgroundColor = bgColor
                         currentSet.getAmt()
                         currentSet.updateLimit()
                         break

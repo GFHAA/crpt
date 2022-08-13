@@ -214,7 +214,11 @@ input {
 }
 
 .imgHolder {
-    display: inline-block;
+    height: 254px;
+    background: rgb(186, 188, 190, 0.9);
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50rem;
     vertical-align: middle;
 }
 
