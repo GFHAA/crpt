@@ -340,3 +340,7 @@ input {
 .form-control{
     color: #fff!important;
 }
+.form-control:focus {
+    color: #212529;
+    outline: 0;
+}
