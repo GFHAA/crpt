@@ -337,3 +337,6 @@ input {
     border-radius: 1.5rem;
     background: #272938;
 }
+.form-control{
+    color: #fff!important;
+}
